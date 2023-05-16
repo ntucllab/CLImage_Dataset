@@ -8,7 +8,7 @@ class CLCIFAR10(Dataset):
     """CLCIFAR10 training set
 
     The training set of CIFAR10 with human annotated complementary labels.
-    Containing 50000 samples, each with one ordinary label and three complementary labels
+    Containing 50000 samples, each with one ordinary label and the first one of the three complementary labels
 
     Args:
         root: the path to store the dataset
@@ -48,7 +48,7 @@ class CLCIFAR20(Dataset):
     """CLCIFAR20 training set
 
     The training set of CIFAR20 with human annotated complementary labels.
-    Containing 50000 samples, each with one ordinary label and three complementary labels
+    Containing 50000 samples, each with one ordinary label and the first one of the three complementary labels
 
     Args:
         root: the path to store the dataset
