@@ -9,6 +9,15 @@ TL;DR: the download links to CLCIFAR dataset
 * CLCIFAR10: [clcifar10.pkl](https://clcifar.s3.us-west-2.amazonaws.com/clcifar10.pkl) (148MB)
 * CLCIFAR20: [clcifar20.pkl](https://clcifar.s3.us-west-2.amazonaws.com/clcifar20.pkl) (151MB)
 
+## Reproduce Code
+
+The python version should be 3.8.10 or above.
+
+```bash
+pip3 install -r requirement.txt
+bash run.sh
+```
+
 ## CLCIFAR10
 
 This Complementary labeled CIFAR10 dataset contains 3 human annotated complementary labels for all 50000 images in the training split of CIFAR10. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
