@@ -76,14 +76,21 @@ def get_cifar10(T_option, data_aug=False, eta=0):
                 ),
             ]
         )
-    test_transform = transforms.Compose(
-        [
-            transforms.ToTensor(),
-            transforms.Normalize(
-                [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
-            ),
-        ]
-    )
+    if data_aug == 'autoaug':
+        test_transform = transforms.Compose(
+            [
+                transforms.ToTensor()
+            ]
+        )
+    else:
+        test_transform = transforms.Compose(
+            [
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
+                ),
+            ]
+        )
     
     dataset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
     testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=test_transform)
@@ -148,14 +155,21 @@ def get_cifar20(T_option, data_aug=False, eta=0):
                 ),
             ]
         )
-    test_transform = transforms.Compose(
-        [
-            transforms.ToTensor(),
-            transforms.Normalize(
-                [0.5068, 0.4854, 0.4402], [0.2672, 0.2563, 0.2760]
-            ),
-        ]
-    )
+    if data_aug == 'autoaug':
+        test_transform = transforms.Compose(
+            [
+                transforms.ToTensor()
+            ]
+        )
+    else:
+        test_transform = transforms.Compose(
+            [
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
+                ),
+            ]
+        )
     
     dataset = torchvision.datasets.CIFAR100(root='./data', train=True, download=True, transform=transform)
     testset = torchvision.datasets.CIFAR100(root='./data', train=False, download=True, transform=test_transform)
@@ -320,14 +334,21 @@ def get_clcifar10(dataset_name, data_aug=False, data_cleaning_rate=0):
                 ),
             ]
         )
-    test_transform = transforms.Compose(
-        [
-            transforms.ToTensor(),
-            transforms.Normalize(
-                [0.4914, 0.4822, 0.4465], [0.247, 0.2435, 0.2616]
-            ),
-        ]
-    )
+    if data_aug == 'autoaug':
+        test_transform = transforms.Compose(
+            [
+                transforms.ToTensor()
+            ]
+        )
+    else:
+        test_transform = transforms.Compose(
+            [
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
+                ),
+            ]
+        )
     
     dataset = CustomDataset(root='./data', transform=transform, dataset_name=dataset_name, data_cleaning_rate=data_cleaning_rate)
     testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=test_transform)
@@ -375,14 +396,21 @@ def get_clcifar20(dataset_name, data_aug=False, data_cleaning_rate=0):
                 ),
             ]
         )
-    test_transform = transforms.Compose(
-        [
-            transforms.ToTensor(),
-            transforms.Normalize(
-                [0.5068, 0.4854, 0.4402], [0.2672, 0.2563, 0.2760]
-            ),
-        ]
-    )
+    if data_aug == 'autoaug':
+        test_transform = transforms.Compose(
+            [
+                transforms.ToTensor()
+            ]
+        )
+    else:
+        test_transform = transforms.Compose(
+            [
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
+                ),
+            ]
+        )
 
     dataset = CustomDataset(root='./data', transform=transform, dataset_name=dataset_name, data_cleaning_rate=data_cleaning_rate)
     testset = torchvision.datasets.CIFAR100(root='./data', train=False, download=True, transform=test_transform)
