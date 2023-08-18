@@ -65,9 +65,6 @@ def get_cifar10(T_option, data_aug=False, eta=0):
             [
                 transforms.AutoAugment(transforms.AutoAugmentPolicy.CIFAR10),
                 transforms.ToTensor(),
-                transforms.Normalize(
-                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
-                ),
             ]
         )
     else:
@@ -140,9 +137,6 @@ def get_cifar20(T_option, data_aug=False, eta=0):
             [
                 transforms.AutoAugment(transforms.AutoAugmentPolicy.CIFAR10),
                 transforms.ToTensor(),
-                transforms.Normalize(
-                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
-                ),
             ]
         )
     else:
@@ -214,7 +208,7 @@ class CustomDataset(Dataset):
             dataset_path = dataset_path = os.path.join(root, 'clcifar10', "clcifar10.pkl")
 
         if not os.path.exists(dataset_path):
-            if dataset_name == "clcifar10" or 'b-clcifar10-n':
+            if dataset_name == "clcifar10" or dataset_name == "clcifar10":
                 print("Downloading clcifar10(148.3MB)")
                 url = "https://clcifar.s3.us-west-2.amazonaws.com/clcifar10.pkl"
                 with tqdm(unit='B', unit_scale=True, unit_divisor=1024, miniters=1, desc=url.split('/')[-1]) as t:
@@ -312,11 +306,9 @@ def get_clcifar10(dataset_name, data_aug=False, data_cleaning_rate=0):
     elif data_aug == 'autoaug':
         transform = transforms.Compose(
             [
+                transforms.ToPILImage(),
                 transforms.AutoAugment(transforms.AutoAugmentPolicy.CIFAR10),
                 transforms.ToTensor(),
-                transforms.Normalize(
-                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
-                ),
             ]
         )
     else:
@@ -369,11 +361,9 @@ def get_clcifar20(dataset_name, data_aug=False, data_cleaning_rate=0):
     elif data_aug == 'autoaug':
         transform = transforms.Compose(
             [
+                transforms.ToPILImage(),
                 transforms.AutoAugment(transforms.AutoAugmentPolicy.CIFAR10),
                 transforms.ToTensor(),
-                transforms.Normalize(
-                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
-                ),
             ]
         )
     else:
