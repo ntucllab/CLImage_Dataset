@@ -47,10 +47,11 @@ def get_args():
     parser.add_argument('--model', type=str, choices=model_list, help='Model name', default="resnet")
     parser.add_argument('--lr', type=float, help='Learning rate', default=1e-4)
     parser.add_argument('--seed', type=int, help='Random seed', default=0)
-    parser.add_argument('--data_aug', type=str, default="false")
+    parser.add_argument('--data_aug', type=str, default="std")
     parser.add_argument('--data_cleaning_rate', type=float, default=0)
     parser.add_argument('--eta', type=float, default=0)
     parser.add_argument('--alpha', type=float, default=0)
+    parser.add_argument('--cutmix', type=str, default="false")
 
     args = parser.parse_args()
     return args

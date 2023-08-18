@@ -49,11 +49,21 @@ def get_cifar10(T_option, data_aug=False, eta=0):
         T_option: ["uniform", "synthetic-noise"]
         eta: noise rate
     """
-    if data_aug:
+    if data_aug == 'std':
         transform = transforms.Compose(
             [
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(32, padding=4),
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
+                ),
+            ]
+        )
+    elif data_aug == 'autoaug':
+        transform = transforms.Compose(
+            [
+                transforms.AutoAugment(transforms.AutoAugmentPolicy.CIFAR10),
                 transforms.ToTensor(),
                 transforms.Normalize(
                     [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
@@ -114,7 +124,7 @@ def get_cifar10(T_option, data_aug=False, eta=0):
     return trainset, validset, testset, ord_trainset, ord_validset
 
 def get_cifar20(T_option, data_aug=False, eta=0):
-    if data_aug:
+    if data_aug == 'std':
         transform = transforms.Compose(
             [
                 transforms.RandomHorizontalFlip(),
@@ -122,6 +132,16 @@ def get_cifar20(T_option, data_aug=False, eta=0):
                 transforms.ToTensor(),
                 transforms.Normalize(
                     [0.5068, 0.4854, 0.4402], [0.2672, 0.2563, 0.2760]
+                ),
+            ]
+        )
+    elif data_aug == 'autoaug':
+        transform = transforms.Compose(
+            [
+                transforms.AutoAugment(transforms.AutoAugmentPolicy.CIFAR10),
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
                 ),
             ]
         )
@@ -278,15 +298,24 @@ def get_clcifar10(dataset_name, data_aug=False, data_cleaning_rate=0):
         dataset_name: ['clcifar10', 'clcifar10-n', 'clcifar10-noiseless]
         data_cleaning_rate: we delete N% of noisy data
     """
-    if data_aug:
+    if data_aug == 'std':
         transform = transforms.Compose(
             [
-                transforms.ToPILImage(),
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(32, padding=4),
                 transforms.ToTensor(),
                 transforms.Normalize(
-                    [0.4914, 0.4822, 0.4465], [0.247, 0.2435, 0.2616]
+                    [0.5068, 0.4854, 0.4402], [0.2672, 0.2563, 0.2760]
+                ),
+            ]
+        )
+    elif data_aug == 'autoaug':
+        transform = transforms.Compose(
+            [
+                transforms.AutoAugment(transforms.AutoAugmentPolicy.CIFAR10),
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
                 ),
             ]
         )
@@ -326,15 +355,24 @@ def get_clcifar10(dataset_name, data_aug=False, data_cleaning_rate=0):
     return trainset, validset, testset, ord_trainset, ord_validset
 
 def get_clcifar20(dataset_name, data_aug=False, data_cleaning_rate=0):
-    if data_aug:
+    if data_aug == 'std':
         transform = transforms.Compose(
             [
-                transforms.ToPILImage(),
                 transforms.RandomHorizontalFlip(),
                 transforms.RandomCrop(32, padding=4),
                 transforms.ToTensor(),
                 transforms.Normalize(
                     [0.5068, 0.4854, 0.4402], [0.2672, 0.2563, 0.2760]
+                ),
+            ]
+        )
+    elif data_aug == 'autoaug':
+        transform = transforms.Compose(
+            [
+                transforms.AutoAugment(transforms.AutoAugmentPolicy.CIFAR10),
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    [0.4922, 0.4832, 0.4486], [0.2456, 0.2419, 0.2605]
                 ),
             ]
         )

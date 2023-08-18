@@ -4,6 +4,7 @@ import numpy as np
 import torch.optim as optim
 from tqdm import tqdm
 import torch.nn.functional as F
+from torchvision.transforms import v2
 
 from cll_experiment.datasets import get_dataset
 from cll_experiment.models import get_resnet18, get_modified_resnet18
@@ -23,7 +24,7 @@ def train(args):
     model = args.model
     lr = args.lr
     seed = args.seed
-    data_aug = True if args.data_aug.lower()=="true" else False
+    # data_aug = True if args.data_aug.lower()=="true" else False
 
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -62,6 +63,11 @@ def train(args):
     ord_validloader = DataLoader(ord_validset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
     testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
+    print(f'use augment: {args.data_aug}')
+    # if args.cutmix:
+    #     print('use cutmix')
+    #     cutmix = v2.CutMix(num_classes=num_classes)
+
     train_labels = torch.tensor(np.array(trainset.dataset.targets), dtype=torch.int).squeeze()
     class_prior = train_labels.bincount().float() / train_labels.shape[0]
 
@@ -85,6 +91,8 @@ def train(args):
 
             for inputs, labels in trainloader:
 
+                # if args.cutmix:
+                #     inputs, labels = cutmix(inputs, labels)
                 inputs, labels = inputs.to(device), labels.to(device)
 
                 optimizer.zero_grad()
