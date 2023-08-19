@@ -52,6 +52,7 @@ def get_args():
     parser.add_argument('--eta', type=float, default=0)
     parser.add_argument('--alpha', type=float, default=0)
     parser.add_argument('--cutmix', type=str, default="false")
+    parser.add_argument('--test', action='store_true')
 
     args = parser.parse_args()
     return args

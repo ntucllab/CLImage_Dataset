@@ -4,7 +4,7 @@ import numpy as np
 import torch.optim as optim
 from tqdm import tqdm
 import torch.nn.functional as F
-from torchvision.transforms import v2
+import wandb
 
 from cll_experiment.datasets import get_dataset
 from cll_experiment.models import get_resnet18, get_modified_resnet18
@@ -81,6 +81,13 @@ def train(args):
     optimizer = optim.Adam(model.parameters(), lr=lr, weight_decay=1e-4)
 
     validation_obj = ["valid_acc", "ure", "scel"]
+    best_epoch = {obj: None for obj in validation_obj}
+
+    wandb.login()
+    if args.test:
+        wandb.init(project="test", config={"lr": lr, "seed": seed}, tags=[algo])
+    else:
+        wandb.init(project=args.dataset_name, config={"lr": lr, "seed": seed}, tags=[algo])
 
     with tqdm(range(epochs), unit="epoch") as tepoch:
         for epoch in tepoch:
@@ -168,11 +175,33 @@ def train(args):
             ure /= len(trainloader)
             training_loss /= len(trainloader)
             scel /= len(trainloader)
+            wandb.log({"ure": ure, "training_loss": training_loss, "scel": scel})
 
             if (epoch+1) % eval_n_epoch == 0:
                 model.eval()
                 train_acc, valid_acc, test_acc = validate(model, ord_trainloader), validate(model, ord_validloader), validate(model, testloader)
                 print(train_acc, valid_acc, test_acc)
+                
+                wandb.log({"train_acc": train_acc, "valid_acc": valid_acc, "test_acc": test_acc})
+                epoch_info = {
+                    "epoch": epoch,
+                    "train_acc": train_acc,
+                    "valid_acc": valid_acc,
+                    "test_acc": test_acc,
+                    "ure": ure,
+                    "scel": scel,
+                    "training_loss": training_loss
+                }
+                if best_epoch["valid_acc"] is None or valid_acc > best_epoch["valid_acc"]["valid_acc"]:
+                    best_epoch["valid_acc"] = epoch_info
+                if best_epoch["ure"] is None or ure < best_epoch["ure"]["ure"]:
+                    best_epoch["ure"] = epoch_info
+                if best_epoch["scel"] is None or scel < best_epoch["scel"]["scel"]:
+                    best_epoch["scel"] = epoch_info
+        wandb.summary["best_epoch-valid_acc"] = best_epoch["valid_acc"]
+        wandb.summary["best_epoch-ure"] = best_epoch["ure"]
+        wandb.summary["best_epoch-scel"] = best_epoch["scel"]
+        wandb.finish()  
 
 if __name__ == "__main__":
     args = get_args()
