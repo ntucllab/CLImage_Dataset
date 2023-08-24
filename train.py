@@ -5,6 +5,7 @@ import torch.optim as optim
 from tqdm import tqdm
 import torch.nn.functional as F
 import wandb
+import random
 
 from cll_experiment.datasets import get_dataset
 from cll_experiment.models import get_resnet18, get_modified_resnet18
@@ -29,6 +30,8 @@ def train(args):
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
+    random.seed(seed)
+    torch.use_deterministic_algorithms(True)
 
     trainset, validset, testset, ord_trainset, ord_validset, num_classes = get_dataset(args)
 
