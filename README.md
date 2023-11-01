@@ -6,8 +6,8 @@ The dataset repo of "CLCIFAR: CIFAR-Derived Benchmark Datasets with Human Annota
 This repo contains two datasets: CLCIFAR10 and CLCIFAR20 with human annotated complementary labels for complementary label learning tasks.
 
 TL;DR: the download links to CLCIFAR dataset
-* CLCIFAR10: [clcifar10.pkl](https://clcifar.s3.us-west-2.amazonaws.com/clcifar10.pkl) (148MB)
-* CLCIFAR20: [clcifar20.pkl](https://clcifar.s3.us-west-2.amazonaws.com/clcifar20.pkl) (151MB)
+* CLCIFAR10: [clcifar10.pkl](https://drive.google.com/file/d/1uNLqmRUkHzZGiSsCtV2-fHoDbtKPnVt2/view?usp=sharing) (148MB)
+* CLCIFAR20: [clcifar20.pkl](https://drive.google.com/file/d/1PhZsyoi1dAHDGlmB4QIJvDHLf_JBsFeP/view?usp=sharing) (151MB)
 
 ## Reproduce Code
 
