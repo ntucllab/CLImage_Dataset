@@ -13,7 +13,13 @@ def get_args():
         "noisy-uniform-cifar20",
         "clcifar10-n",
         "clcifar20-n",
-        "b-clcifar10-n"
+        "b-clcifar10-n", 
+        "uniform-micro_imagenet10",
+        "uniform-micro_imagenet20",
+        "clmicro_imagenet10",
+        "clmicro_imagenet20",
+        "noisy-uniform-micro_imagenet10",
+        "noisy-uniform-micro_imagenet20",
     ]
 
     algo_list = [

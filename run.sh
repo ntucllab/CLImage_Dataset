@@ -1,7 +1,12 @@
+alg=$1
+dataset=$2
+lr=$3
+seed=$4
+
 python train.py \
-    --algo=fwd-r \
-    --dataset_name=clcifar20 \
+    --algo=${alg} \
+    --dataset_name=${dataset} \
     --model=m-resnet18 \
-    --lr=5e-4 \
-    --seed=197 \
+    --lr=${lr} \
+    --seed=${seed} \
     --data_aug=autoaug

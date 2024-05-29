@@ -11,6 +11,131 @@ from copy import deepcopy
 import torch.nn.functional as F
 import urllib.request
 import pickle
+import gdown
+from PIL import Image
+
+class CLMicro_ImageNet10(Dataset):
+    def __init__(self, root="./data", train=True, transform=None, data_cleaning_rate=None):
+        os.makedirs(os.path.join(root, 'clmicro_imagenet10'), exist_ok=True)
+        if train:
+            dataset_path = f"{root}/clmicro_imagenet10_train.pkl"
+            gid = "1k02mwMpnBUM9de7TiJLBaCuS8myGuYFx"
+        else:
+            dataset_path = f"{root}/clmicro_imagenet10_test.pkl"
+            gid = "1e8fZN8swbg9wc6BSOC0A5KHIqCY2C7me"
+        if not os.path.exists(dataset_path):
+            os.makedirs(root, exist_ok=True)
+            gdown.download(id=gid, output=dataset_path)
+        with open(dataset_path, "rb") as f:
+            data = pickle.load(f)
+        
+
+        if train:
+            self.targets = []
+            self.data = []
+            self.ord_labels = []
+            noise = {'targets':[], 'data':[], 'ord_labels':[]}
+            for i in range(len(data["cl_labels"])):
+                cl = data["cl_labels"][i][0]
+                if cl != data["ord_labels"][i]:
+                    self.targets.append(cl)
+                    self.data.append(data["images"][i])
+                    self.ord_labels.append(data["ord_labels"][i])
+                else:
+                    noise['targets'].append(data["cl_labels"][i][0])
+                    noise['data'].append(data["images"][i])
+                    noise['ord_labels'].append(data["ord_labels"][i])
+
+            assert((0 <= data_cleaning_rate) and (data_cleaning_rate <= 1))
+            noise_num = int(len(noise['data']) * data_cleaning_rate)
+            self.targets.extend(noise['targets'][noise_num:])
+            self.data.extend(noise['data'][noise_num:])
+            self.ord_labels.extend(noise['ord_labels'][noise_num:])
+
+            indexes = np.arange(len(self.data))
+            np.random.shuffle(indexes)
+            self.targets = [self.targets[i] for i in indexes]
+            self.data = [self.data[i] for i in indexes]
+            self.ord_labels = [self.ord_labels[i] for i in indexes]
+            self.targets = [labels[0] for labels in data["cl_labels"]]
+        else:
+            self.data = data["images"]
+            self.ord_labels = data["ord_labels"]
+            self.targets = data["ord_labels"]
+        self.transform = transform
+        self.num_classes = 10
+        self.input_dim = 64 * 64 * 3
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, index):
+        image = self.data[index]
+        image = Image.fromarray(image)
+        if self.transform is not None:
+            image = self.transform(image)
+        return image, self.targets[index]
+
+class CLMicro_ImageNet20(Dataset):
+    def __init__(self, root="./data", train=True, transform=None, data_cleaning_rate=None):
+        os.makedirs(os.path.join(root, 'clmicro_imagenet20'), exist_ok=True)
+        if train:
+            dataset_path = f"{root}/clmicro_imagenet20_train.pkl"
+            gid = "1Urdxs_QTxbb1gDBpmjP09Q35btckI3_d"
+        else:
+            dataset_path = f"{root}/clmicro_imagenet20_test.pkl"
+            gid = "1EdBCrifSrIIUg1ioPWA-ZLEHO53P4NPl"
+        if not os.path.exists(dataset_path):
+            os.makedirs(root, exist_ok=True)
+            gdown.download(id=gid, output=dataset_path)
+        with open(dataset_path, "rb") as f:
+            data = pickle.load(f)
+
+        if train:
+            self.targets = []
+            self.data = []
+            self.ord_labels = []
+            noise = {'targets':[], 'data':[], 'ord_labels':[]}
+            for i in range(len(data["cl_labels"])):
+                cl = data["cl_labels"][i][0]
+                if cl != data["ord_labels"][i]:
+                    self.targets.append(cl)
+                    self.data.append(data["images"][i])
+                    self.ord_labels.append(data["ord_labels"][i])
+                else:
+                    noise['targets'].append(data["cl_labels"][i][0])
+                    noise['data'].append(data["images"][i])
+                    noise['ord_labels'].append(data["ord_labels"][i])
+
+            assert((0 <= data_cleaning_rate) and (data_cleaning_rate <= 1))
+            noise_num = int(len(noise['data']) * data_cleaning_rate)
+            self.targets.extend(noise['targets'][noise_num:])
+            self.data.extend(noise['data'][noise_num:])
+            self.ord_labels.extend(noise['ord_labels'][noise_num:])
+
+            indexes = np.arange(len(self.data))
+            np.random.shuffle(indexes)
+            self.targets = [self.targets[i] for i in indexes]
+            self.data = [self.data[i] for i in indexes]
+            self.ord_labels = [self.ord_labels[i] for i in indexes]
+            self.targets = [labels[0] for labels in data["cl_labels"]]
+        else:
+            self.data = data["images"]
+            self.ord_labels = data["ord_labels"]
+            self.targets = data["ord_labels"]
+        self.transform = transform
+        self.num_classes = 20
+        self.input_dim = 64 * 64 * 3
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, index):
+        image = self.data[index]
+        image = Image.fromarray(image)
+        if self.transform is not None:
+            image = self.transform(image)
+        return image, self.targets[index]
 
 def get_dataset(args):
     dataset_name = args.dataset_name
@@ -40,9 +165,88 @@ def get_dataset(args):
         num_classes = 20
     elif dataset_name == 'b-clcifar10-n':
         trainset, validset, testset, ord_trainset, ord_validset = get_clcifar10('b-clcifar10-n', data_aug, data_cleaning_rate=data_cleaning_rate)
+    elif "micro_imagenet" in dataset_name:
+        trainset, validset, testset, ord_trainset, ord_validset = get_imagenet(dataset_name, data_aug, data_cleaning_rate=data_cleaning_rate)
+        num_classes = 20 if "20" in dataset_name else 10
     else:
         raise NotImplementedError
     return trainset, validset, testset, ord_trainset, ord_validset, num_classes
+
+def get_imagenet(T_option, data_aug=False, eta=0, data_cleaning_rate=None):
+    train_transform = transforms.Compose(
+        [
+            transforms.RandomCrop(64, padding=8),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+        ]
+    )
+    test_transform = transforms.Compose(
+        [
+            transforms.ToTensor(),
+            transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+        ]
+    )
+    if "10" in T_option:
+        dataset = CLMicro_ImageNet10(
+            root="./data/imagenet10",
+            train=True,
+            transform=train_transform,
+            data_cleaning_rate=data_cleaning_rate, 
+        )
+        testset = CLMicro_ImageNet10(
+            root="./data/imagenet10",
+            train=False,
+            transform=test_transform,
+            data_cleaning_rate=data_cleaning_rate, 
+        )
+    elif "20" in T_option:
+        dataset = CLMicro_ImageNet20(
+            root="./data/imagenet20",
+            train=True,
+            transform=train_transform,
+            data_cleaning_rate=data_cleaning_rate, 
+        )
+        testset = CLMicro_ImageNet20(
+            root="./data/imagenet20",
+            train=False,
+            transform=test_transform,
+            data_cleaning_rate=data_cleaning_rate, 
+        )
+    n_samples = len(dataset)
+    
+    ord_trainset, ord_validset = torch.utils.data.random_split(dataset, [int(n_samples*0.9), n_samples - int(n_samples*0.9)])
+    
+    trainset = deepcopy(ord_trainset)
+    validset = deepcopy(ord_validset)
+    ord_trainset.dataset.targets = ord_trainset.dataset.ord_labels
+    ord_validset.dataset.targets = ord_validset.dataset.ord_labels
+    num_classes = dataset.num_classes
+    if "cl" in T_option:
+        return trainset, validset, testset, ord_trainset, ord_validset
+    
+    if "uniform" in T_option:
+        T = torch.full([num_classes, num_classes], 1/(num_classes-1))
+        for i in range(num_classes):
+            T[i][i] = 0
+    elif "noisy-uniform" in T_option:
+        T = np.array(torch.full([num_classes, num_classes], (1-eta)/(num_classes-1)))
+        for i in range(num_classes):
+            T[i][i] = eta
+        for i in range(num_classes):
+            T[i] /= sum(T[i])
+    else:
+        raise NotImplementedError
+    
+    for i in range(n_samples):
+        ord_label = trainset.dataset.targets[i]
+        trainset.dataset.targets[i] = np.random.choice(list(range(num_classes)), p=T[ord_label])
+    
+    for i in range(n_samples):
+        ord_label = validset.dataset.targets[i]
+        validset.dataset.targets[i] = np.random.choice(list(range(num_classes)), p=T[ord_label])
+    
+    return trainset, validset, testset, ord_trainset, ord_validset
 
 def get_cifar10(T_option, data_aug=False, eta=0):
     """
@@ -224,14 +428,16 @@ class CustomDataset(Dataset):
         if not os.path.exists(dataset_path):
             if dataset_name == "clcifar10" or dataset_name == "clcifar10":
                 print("Downloading clcifar10(148.3MB)")
-                url = "https://clcifar.s3.us-west-2.amazonaws.com/clcifar10.pkl"
-                with tqdm(unit='B', unit_scale=True, unit_divisor=1024, miniters=1, desc=url.split('/')[-1]) as t:
-                    urllib.request.urlretrieve(url, dataset_path, reporthook=lambda b, bsize, tsize: t.update(bsize))
+                if not os.path.exists(dataset_path):
+                    gdown.download(
+                        id="1uNLqmRUkHzZGiSsCtV2-fHoDbtKPnVt2", output=dataset_path
+                    )
             elif dataset_name == "clcifar20":
                 print("Downloading clcifar20(150.6MB)")
-                url = "https://clcifar.s3.us-west-2.amazonaws.com/clcifar20.pkl"
-                with tqdm(unit='B', unit_scale=True, unit_divisor=1024, miniters=1, desc=url.split('/')[-1]) as t:
-                    urllib.request.urlretrieve(url, dataset_path, reporthook=lambda b, bsize, tsize: t.update(bsize))
+                if not os.path.exists(dataset_path):
+                    gdown.download(
+                        id="1PhZsyoi1dAHDGlmB4QIJvDHLf_JBsFeP", output=dataset_path
+                    )
             elif dataset_name == 'clcifar10-n':
                 pass
             elif dataset_name == 'clcifar20-n':

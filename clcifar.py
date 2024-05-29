@@ -3,6 +3,7 @@ import os
 import urllib.request
 from tqdm import tqdm
 import pickle
+import gdown
 
 class CLCIFAR10(Dataset):
     """CLCIFAR10 training set
@@ -20,10 +21,9 @@ class CLCIFAR10(Dataset):
         dataset_path = os.path.join(root, 'clcifar10', f"clcifar10.pkl")
 
         if not os.path.exists(dataset_path):
-            print("Downloading clcifar10(148MB)")
-            url = "https://clcifar.s3.us-west-2.amazonaws.com/clcifar10.pkl"
-            with tqdm(unit='B', unit_scale=True, unit_divisor=1024, miniters=1, desc=url.split('/')[-1]) as t:
-                urllib.request.urlretrieve(url, dataset_path, reporthook=lambda b, bsize, tsize: t.update(bsize))
+            gdown.download(
+                id="1uNLqmRUkHzZGiSsCtV2-fHoDbtKPnVt2", output=dataset_path
+            )
 
         data = pickle.load(open(dataset_path, "rb"))
 
@@ -60,10 +60,9 @@ class CLCIFAR20(Dataset):
         dataset_path = os.path.join(root, 'clcifar20', f"clcifar20.pkl")
 
         if not os.path.exists(dataset_path):
-            print("Downloading clcifar20(151MB)")
-            url = "https://clcifar.s3.us-west-2.amazonaws.com/clcifar20.pkl"
-            with tqdm(unit='B', unit_scale=True, unit_divisor=1024, miniters=1, desc=url.split('/')[-1]) as t:
-                urllib.request.urlretrieve(url, dataset_path, reporthook=lambda b, bsize, tsize: t.update(bsize))
+            gdown.download(
+                id="1PhZsyoi1dAHDGlmB4QIJvDHLf_JBsFeP", output=dataset_path
+            )
 
         data = pickle.load(open(dataset_path, "rb"))
 

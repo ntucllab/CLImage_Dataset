@@ -5,6 +5,8 @@ import torch.optim as optim
 from tqdm import tqdm
 import torch.nn.functional as F
 from torchvision.transforms import v2
+import os
+import json
 
 from cll_experiment.datasets import get_dataset
 from cll_experiment.models import get_resnet18, get_modified_resnet18
@@ -24,6 +26,8 @@ def train(args):
     model = args.model
     lr = args.lr
     seed = args.seed
+    dataset_name = args.dataset_name
+    os.makedirs("logs/", exist_ok=True)
     # data_aug = True if args.data_aug.lower()=="true" else False
 
     np.random.seed(seed)
@@ -80,7 +84,8 @@ def train(args):
     model.device = device
     optimizer = optim.Adam(model.parameters(), lr=lr, weight_decay=1e-4)
 
-    validation_obj = ["valid_acc", "ure", "scel"]
+    validation_obj = ["valid_acc", "ure", "scel", "last"]
+    best_epoch = {obj: None for obj in validation_obj}
 
     with tqdm(range(epochs), unit="epoch") as tepoch:
         for epoch in tepoch:
@@ -172,7 +177,26 @@ def train(args):
             if (epoch+1) % eval_n_epoch == 0:
                 model.eval()
                 train_acc, valid_acc, test_acc = validate(model, ord_trainloader), validate(model, ord_validloader), validate(model, testloader)
+                epoch_info = {
+                    "epoch": epoch,
+                    "train_acc": train_acc,
+                    "valid_acc": valid_acc,
+                    "test_acc": test_acc,
+                    "ure": ure.item(),
+                    "scel": scel.item(),
+                    "training_loss": training_loss
+                }
                 print(train_acc, valid_acc, test_acc)
+                if best_epoch["valid_acc"] is None or valid_acc > best_epoch["valid_acc"]["valid_acc"]:
+                    best_epoch["valid_acc"] = epoch_info
+                if best_epoch["ure"] is None or ure < best_epoch["ure"]["ure"]:
+                    best_epoch["ure"] = epoch_info
+                if best_epoch["scel"] is None or scel < best_epoch["scel"]["scel"]:
+                    best_epoch["scel"] = epoch_info
+                best_epoch["last"] = epoch_info
+                print(best_epoch)
+                with open(f"logs/{algo}-{dataset_name}-{lr}-{seed}.json", "w") as f:
+                    json.dump(best_epoch, f)
 
 if __name__ == "__main__":
     args = get_args()
