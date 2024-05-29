@@ -1,9 +1,9 @@
-# CLCIFAR Dataset
+# CLImage Dataset
 
-The dataset repo of "CLCIFAR: CIFAR-Derived Benchmark Datasets with Human Annotated Complementary Labels"
+The dataset repo of "CLImage: Human-Annotated Datasets for Complementary-Label Learning"
 
 ## Abstract
-This repo contains two datasets: CLCIFAR10 and CLCIFAR20 with human annotated complementary labels for complementary label learning tasks.
+This repo contains four datasets: CLCIFAR10, CLCIFAR20, CLMicroImageNet10, and CLMicroImageNet20 with human annotated complementary labels for complementary label learning tasks.
 
 TL;DR: the download links to CLCIFAR dataset
 * CLCIFAR10: [clcifar10.pkl](https://drive.google.com/file/d/1uNLqmRUkHzZGiSsCtV2-fHoDbtKPnVt2/view?usp=sharing) (148MB)
