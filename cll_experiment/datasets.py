@@ -173,20 +173,35 @@ def get_dataset(args):
     return trainset, validset, testset, ord_trainset, ord_validset, num_classes
 
 def get_imagenet(T_option, data_aug=False, eta=0, data_cleaning_rate=None):
-    train_transform = transforms.Compose(
-        [
-            transforms.RandomCrop(64, padding=8),
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
-        ]
-    )
-    test_transform = transforms.Compose(
-        [
-            transforms.ToTensor(),
-            transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
-        ]
-    )
+    if data_aug == 'autoaug':
+        transform = transforms.Compose(
+            [
+                transforms.AutoAugment(transforms.AutoAugmentPolicy.IMAGENET),
+                transforms.ToTensor(),
+            ]
+        )
+    else:
+        train_transform = transforms.Compose(
+            [
+                transforms.RandomCrop(64, padding=8),
+                transforms.RandomHorizontalFlip(),
+                transforms.ToTensor(),
+                transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+            ]
+        )
+    if data_aug == 'autoaug':
+        test_transform = transforms.Compose(
+            [
+                transforms.ToTensor()
+            ]
+        )
+    else:
+        test_transform = transforms.Compose(
+            [
+                transforms.ToTensor(),
+                transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+            ]
+        )
     if "10" in T_option:
         dataset = CLMicro_ImageNet10(
             root="./data/imagenet10",
