@@ -174,7 +174,7 @@ def get_dataset(args):
 
 def get_imagenet(T_option, data_aug=False, eta=0, data_cleaning_rate=None):
     if data_aug == 'autoaug':
-        transform = transforms.Compose(
+        train_transform = transforms.Compose(
             [
                 transforms.AutoAugment(transforms.AutoAugmentPolicy.IMAGENET),
                 transforms.ToTensor(),
