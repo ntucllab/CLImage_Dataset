@@ -254,11 +254,11 @@ def get_imagenet(T_option, data_aug=False, eta=0, data_cleaning_rate=None):
         raise NotImplementedError
     
     for i in range(n_samples):
-        ord_label = trainset.dataset.targets[i]
+        ord_label = trainset.dataset.ord_labels[i]
         trainset.dataset.targets[i] = np.random.choice(list(range(num_classes)), p=T[ord_label])
     
     for i in range(n_samples):
-        ord_label = validset.dataset.targets[i]
+        ord_label = validset.dataset.ord_labels[i]
         validset.dataset.targets[i] = np.random.choice(list(range(num_classes)), p=T[ord_label])
     
     return trainset, validset, testset, ord_trainset, ord_validset
