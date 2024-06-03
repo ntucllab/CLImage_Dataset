@@ -71,7 +71,6 @@ class CLMicro_ImageNet10(Dataset):
 
     def __getitem__(self, index):
         image = self.data[index]
-        image = Image.fromarray(image)
         if self.transform is not None:
             image = self.transform(image)
         return image, self.targets[index]
@@ -132,7 +131,6 @@ class CLMicro_ImageNet20(Dataset):
 
     def __getitem__(self, index):
         image = self.data[index]
-        image = Image.fromarray(image)
         if self.transform is not None:
             image = self.transform(image)
         return image, self.targets[index]
@@ -176,6 +174,7 @@ def get_imagenet(T_option, data_aug=False, eta=0, data_cleaning_rate=None):
     if data_aug == 'autoaug':
         train_transform = transforms.Compose(
             [
+                transforms.ToPILImage(), 
                 transforms.AutoAugment(transforms.AutoAugmentPolicy.IMAGENET),
                 transforms.ToTensor(),
             ]
@@ -183,6 +182,7 @@ def get_imagenet(T_option, data_aug=False, eta=0, data_cleaning_rate=None):
     else:
         train_transform = transforms.Compose(
             [
+                transforms.ToPILImage(), 
                 transforms.RandomCrop(64, padding=8),
                 transforms.RandomHorizontalFlip(),
                 transforms.ToTensor(),
@@ -192,12 +192,14 @@ def get_imagenet(T_option, data_aug=False, eta=0, data_cleaning_rate=None):
     if data_aug == 'autoaug':
         test_transform = transforms.Compose(
             [
+                transforms.ToPILImage(),
                 transforms.ToTensor()
             ]
         )
     else:
         test_transform = transforms.Compose(
             [
+                transforms.ToPILImage(), 
                 transforms.ToTensor(),
                 transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
             ]
