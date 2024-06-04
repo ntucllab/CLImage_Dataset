@@ -64,6 +64,7 @@ def train(args):
             count_wrong_label += 1
 
     trainloader = DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
+    validloader = DataLoader(validset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
     ord_trainloader = DataLoader(ord_trainset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
     ord_validloader = DataLoader(ord_validset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
     testloader = DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
@@ -93,8 +94,6 @@ def train(args):
     with tqdm(range(epochs), unit="epoch") as tepoch:
         for epoch in tepoch:
             training_loss = 0.0
-            scel = 0
-            ure = 0
             model.train()
 
             for inputs, labels in trainloader:
@@ -105,8 +104,6 @@ def train(args):
 
                 optimizer.zero_grad()
                 outputs = model(inputs)
-                ure += compute_ure(outputs, labels, dataset_T)
-                scel += compute_scel(outputs, labels, algo, dataset_T)
                     
                 if algo == "scl-exp":
                     outputs = F.softmax(outputs, dim=1)
@@ -173,13 +170,23 @@ def train(args):
                 training_loss += loss.item()
                 tepoch.set_postfix(loss=loss.item())
 
-            ure /= len(trainloader)
             training_loss /= len(trainloader)
-            scel /= len(trainloader)
-            wandb.log({"ure": ure, "training_loss": training_loss, "scel": scel})
+            wandb.log({"training_loss": training_loss})
 
             if (epoch+1) % eval_n_epoch == 0:
                 model.eval()
+                with torch.no_grad():
+                    ure = 0
+                    scel = 0
+                    for inputs, labels in validloader:
+                        inputs, labels = inputs.to(device), labels.to(device)
+                        outputs = model(inputs)
+                        ure += compute_ure(outputs, labels, dataset_T)
+                        scel += compute_scel(outputs, labels, algo, dataset_T)
+                    ure = ure.item()
+                    scel = scel.item()
+                    ure /= len(validloader)
+                    scel /= len(validloader)
                 train_acc, valid_acc = validate(model, ord_trainloader), validate(model, ord_validloader)
                 test_acc = validate(model, testloader)
                 epoch_info = {
@@ -187,12 +194,13 @@ def train(args):
                     "train_acc": train_acc,
                     "valid_acc": valid_acc,
                     "test_acc": test_acc,
-                    "ure": ure.item(),
-                    "scel": scel.item(),
+                    "ure": ure,
+                    "scel": scel,
                     "training_loss": training_loss
                 }
                 print(train_acc, valid_acc, test_acc)
-                wandb.log({"train_acc": train_acc, "valid_acc": valid_acc, "test_acc": test_acc})
+                print(ure, scel, valid_acc)
+                wandb.log({"ure": ure, "scel": scel, "train_acc": train_acc, "valid_acc": valid_acc, "test_acc": test_acc})
                 if best_epoch["valid_acc"] is None or valid_acc > best_epoch["valid_acc"]["valid_acc"]:
                     best_epoch["valid_acc"] = epoch_info
                 if best_epoch["ure"] is None or ure < best_epoch["ure"]["ure"]:
