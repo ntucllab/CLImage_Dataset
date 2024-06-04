@@ -57,7 +57,6 @@ class CLMicro_ImageNet10(Dataset):
             self.targets = [self.targets[i] for i in indexes]
             self.data = [self.data[i] for i in indexes]
             self.ord_labels = [self.ord_labels[i] for i in indexes]
-            self.targets = [labels[0] for labels in data["cl_labels"]]
         else:
             self.data = data["images"]
             self.ord_labels = data["ord_labels"]
@@ -117,7 +116,6 @@ class CLMicro_ImageNet20(Dataset):
             self.targets = [self.targets[i] for i in indexes]
             self.data = [self.data[i] for i in indexes]
             self.ord_labels = [self.ord_labels[i] for i in indexes]
-            self.targets = [labels[0] for labels in data["cl_labels"]]
         else:
             self.data = data["images"]
             self.ord_labels = data["ord_labels"]
