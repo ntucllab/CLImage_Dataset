@@ -5,9 +5,13 @@ The dataset repo of "CLImage: Human-Annotated Datasets for Complementary-Label L
 ## Abstract
 This repo contains four datasets: CLCIFAR10, CLCIFAR20, CLMicroImageNet10, and CLMicroImageNet20 with human annotated complementary labels for complementary label learning tasks.
 
-TL;DR: the download links to CLCIFAR dataset
+TL;DR: the download links to CLCIFAR and CLMicroImageNet dataset
 * CLCIFAR10: [clcifar10.pkl](https://drive.google.com/file/d/1uNLqmRUkHzZGiSsCtV2-fHoDbtKPnVt2/view?usp=sharing) (148MB)
 * CLCIFAR20: [clcifar20.pkl](https://drive.google.com/file/d/1PhZsyoi1dAHDGlmB4QIJvDHLf_JBsFeP/view?usp=sharing) (151MB)
+* CLMicroImageNet10 Train: [clmicro_imagenet10_train.pkl](https://drive.google.com/file/d/1k02mwMpnBUM9de7TiJLBaCuS8myGuYFx/view?usp=sharing) (55MB)
+* CLMicroImageNet10 Test: [clmicro_imagenet10_test.pkl](https://drive.google.com/file/d/1e8fZN8swbg9wc6BSOC0A5KHIqCY2C7me/view?usp=sharing) (6MB)
+* CLMicroImageNet20 Train: [clmicro_imagenet20_train.pkl](https://drive.google.com/file/d/1Urdxs_QTxbb1gDBpmjP09Q35btckI3_d/view?usp=sharing) (119MB)
+* CLMicroImageNet20 Test: [clmicro_imagenet20_test.pkl](https://drive.google.com/file/d/1EdBCrifSrIIUg1ioPWA-ZLEHO53P4NPl/view?usp=sharing) (11MB)
 
 ## Reproduce Code
 
