@@ -139,7 +139,7 @@ Testing set download link: [clmicro_imagenet10_test.pkl](https://drive.google.co
 We use `pickle` package to save and load the dataset objects. Use the function `pickle.load` to load the dataset dictionary object `data` in Python.
 
 ```python
-data = pickle.load(open("clcifar10.pkl", "rb"))
+data = pickle.load(open("clmicro_imagenet10_train.pkl", "rb"))
 # keys of data: 'names', 'images', 'ord_labels', 'cl_labels'
 ```
 
@@ -185,7 +185,7 @@ Testing set download link: [clmicro_imagenet20_test.pkl](https://drive.google.co
 We use `pickle` package to save and load the dataset objects. Use the function `pickle.load` to load the dataset dictionary object `data` in Python.
 
 ```python
-data = pickle.load(open("clcifar10.pkl", "rb"))
+data = pickle.load(open("clmicro_imagenet20_train.pkl", "rb"))
 # keys of data: 'names', 'images', 'ord_labels', 'cl_labels'
 ```
 
