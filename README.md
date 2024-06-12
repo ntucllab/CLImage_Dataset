@@ -85,7 +85,7 @@ data = pickle.load(open("clcifar20.pkl", "rb"))
 
 `data` would be a dictionary object with four keys: `names`, `images`, `ord_labels`, `cl_labels`.
 
-* `names`: The list of filenames strings. This filenames are same as the ones in CIFAR10
+* `names`: The list of filenames strings. This filenames are same as the ones in CIFAR20
 
 * `images`: A `numpy.ndarray` of size (32, 32, 3) representing the image data with 3 channels, 32*32 resolution.
 
@@ -123,51 +123,6 @@ Human Intelligence Task (HIT) is the unit of works in Amazon mTurk. We have seve
 * Enlarge the tiny 32\*32 pixels images to 200\*200 pixels for clarity.
 
 ![](https://i.imgur.com/wg5pV2S.mp4)
-
-## CLMicroImageNet10
-
-This Complementary labeled MicroImageNet10 dataset contains 3 human annotated complementary labels for all 5000 images in the training split of TinyImageNet200. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
-
-For more details, please visit our paper at link.
-
-### Dataset Structure
-
-Training set download link: [clmicro_imagenet10_train.pkl](https://drive.google.com/file/d/1k02mwMpnBUM9de7TiJLBaCuS8myGuYFx/view?usp=sharing) (55MB)
-Testing set download link: [clmicro_imagenet10_test.pkl](https://drive.google.com/file/d/1e8fZN8swbg9wc6BSOC0A5KHIqCY2C7me/view?usp=sharing) (6MB)
-
-We use `pickle` package to save and load the dataset objects. Use the function `pickle.load` to load the dataset dictionary object `data` in Python.
-
-```python
-data = pickle.load(open("clcifar10.pkl", "rb"))
-# keys of data: 'names', 'images', 'ord_labels', 'cl_labels'
-```
-
-`data` would be a dictionary object with four keys: `names`, `images`, `ord_labels`, `cl_labels`.
-
-* `names`: The list of filenames strings. This filenames are same as the ones in CIFAR10
-
-* `images`: A `numpy.ndarray` of size (32, 32, 3) representing the image data with 3 channels, 32*32 resolution.
-
-* `ord_labels`: The ordinary labels of the images, and they are labeled from 0 to 9 as follows:
-
-  0: sulphur-butterfly
-  1: backpack
-  2: cardigan
-  3: kimono
-  4: magnetic-compass
-  5: oboe
-  6: scandal
-  7: torch
-  8: pizza
-  9: alp
-
-* `cl_labels`: Three complementary labels for each image from three different workers.
-
-### HIT Design
-
-Human Intelligence Task (HIT) is the unit of works in Amazon mTurk. We have several designs to make the submission page friendly:
-
-* Enlarge the tiny 32\*32 pixels images to 200\*200 pixels for clarity.
 
 ## CLMicroImageNet10
 
