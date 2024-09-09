@@ -226,6 +226,10 @@ Human Intelligence Task (HIT) is the unit of works in Amazon mTurk. We have seve
 
 * Enlarge the tiny 32\*32 pixels images to 200\*200 pixels for clarity.
 
+### Worker IDs
+
+We are also sharing the list of worker IDs that contributed to labeling our CLImage_Dataset. To protect the privacy of the worker IDs, we hashed the original *worker IDs* using SHA-1 encryption. For further details, please refer to the **worker_ids** folder, which contains the worker IDs for each dataset.
+
 ### Reference
 
 [[1]](https://arxiv.org/abs/2110.12088) Jiaheng Wei, Zhaowei Zhu, and Hao Cheng. Learning with Noisy Labels Revisited: A Study Using Real-World Human Annotations. arXiv preprint arXiv:2110.12088, 2021.
