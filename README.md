@@ -74,7 +74,7 @@ This Complementary labeled CIFAR100 dataset contains 3 human annotated complemen
 
 ### Dataset Structure
 
-Dataset download link: [clcifar20.pkl](https://clcifar.s3.us-west-2.amazonaws.com/clcifar20.pkl) (151MB)
+Dataset download link: [clcifar20.pkl]() (151MB)
 
 We use `pickle` package to save and load the dataset objects. Use the function `pickle.load` to load the dataset dictionary object `data` in Python.
 
@@ -132,9 +132,9 @@ For more details, please visit our paper at link.
 
 ### Dataset Structure
 
-Training set download link: [clmicro_imagenet10_train.pkl](https://drive.google.com/file/d/1k02mwMpnBUM9de7TiJLBaCuS8myGuYFx/view?usp=sharing) (55MB)
+Training set download link: [clmicro_imagenet10_train.pkl]() (55MB)
 
-Testing set download link: [clmicro_imagenet10_test.pkl](https://drive.google.com/file/d/1e8fZN8swbg9wc6BSOC0A5KHIqCY2C7me/view?usp=sharing) (6MB)
+Testing set download link: [clmicro_imagenet10_test.pkl]() (6MB)
 
 We use `pickle` package to save and load the dataset objects. Use the function `pickle.load` to load the dataset dictionary object `data` in Python.
 
@@ -178,9 +178,9 @@ For more details, please visit our paper at link.
 
 ### Dataset Structure
 
-Training set download link: [clmicro_imagenet20_train.pkl](https://drive.google.com/file/d/1Urdxs_QTxbb1gDBpmjP09Q35btckI3_d/view?usp=sharing) (119MB)
+Training set download link: [clmicro_imagenet20_train.pkl]() (119MB)
 
-Testing set download link: [clmicro_imagenet20_test.pkl](https://drive.google.com/file/d/1EdBCrifSrIIUg1ioPWA-ZLEHO53P4NPl/view?usp=sharing) (11MB)
+Testing set download link: [clmicro_imagenet20_test.pkl]() (11MB)
 
 We use `pickle` package to save and load the dataset objects. Use the function `pickle.load` to load the dataset dictionary object `data` in Python.
 
