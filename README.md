@@ -147,7 +147,7 @@ data = pickle.load(open("clmicro_imagenet10_train.pkl", "rb"))
 
 * `names`: The list of filenames strings. This filenames are same as the ones in MicroImageNet10
 
-* `images`: A `numpy.ndarray` of size (32, 32, 3) representing the image data with 3 channels, 32*32 resolution.
+* `images`: A `numpy.ndarray` of size (32, 32, 3) representing the image data with 3 channels, 64*64 resolution.
 
 * `ord_labels`: The ordinary labels of the images, and they are labeled from 0 to 9 as follows:
 
@@ -168,7 +168,7 @@ data = pickle.load(open("clmicro_imagenet10_train.pkl", "rb"))
 
 Human Intelligence Task (HIT) is the unit of works in Amazon mTurk. We have several designs to make the submission page friendly:
 
-* Enlarge the tiny 32\*32 pixels images to 200\*200 pixels for clarity.
+* Enlarge the tiny 64\*64 pixels images to 200\*200 pixels for clarity.
 
 ## CLMicroImageNet20
 
@@ -193,7 +193,7 @@ data = pickle.load(open("clmicro_imagenet20_train.pkl", "rb"))
 
 * `names`: The list of filenames strings. This filenames are same as the ones in MicroImageNet20
 
-* `images`: A `numpy.ndarray` of size (32, 32, 3) representing the image data with 3 channels, 32*32 resolution.
+* `images`: A `numpy.ndarray` of size (32, 32, 3) representing the image data with 3 channels, 64*64 resolution.
 
 * `ord_labels`: The ordinary labels of the images, and they are labeled from 0 to 19 as follows:
 
@@ -224,7 +224,7 @@ data = pickle.load(open("clmicro_imagenet20_train.pkl", "rb"))
 
 Human Intelligence Task (HIT) is the unit of works in Amazon mTurk. We have several designs to make the submission page friendly:
 
-* Enlarge the tiny 32\*32 pixels images to 200\*200 pixels for clarity.
+* Enlarge the tiny 64\*64 pixels images to 200\*200 pixels for clarity.
 
 ### Worker IDs
 
