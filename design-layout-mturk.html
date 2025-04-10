@@ -1,0 +1,436 @@
+<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+
+</CORSConfiguration>
+
+<crowd-form>
+<style>
+.row {
+    display: flex;
+}
+.column {
+    float: left;
+}
+.left {
+    width: 75%;
+}
+.right {
+    width: 25%;
+}
+.title {
+    padding-top: 0px;
+    margin-top: 30px;
+    margin-right: 20px;
+}
+.wrapper {
+  height: 50px;
+  background-color: lightblue;
+  display: flex;
+  padding-left: 20px;
+  align-items: center;
+  margin-top: 20px;
+}
+.selection {
+  height: 400px;
+}
+.choice {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  display: flex;
+  flex-direction: row;
+}
+.choice_name {
+  font-size: 14pt;
+  width: 330px;
+  padding-top: 10px;
+  margin-right: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: lightgray;
+}
+.eg {
+  font-size: 14pt;
+  padding-top: 20px;
+  padding-right: 3px;
+}
+</style>
+<div class="row">
+  <div class="column left" style="border-right:1px solid black;">
+
+    <div id="p1" height=30px>
+    </div>
+    <div>
+      <p class="title wrapper"> Problem 1</p>
+      <img src="https://cll-tiny-imagenet-10.s3.ap-northeast-1.amazonaws.com/${image_url_1}" height="200px"/>
+      <p>
+        Choose any one <span style="color: red;">"incorrect"</span> label for this image:
+      </p>
+      <div class="selection">
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_1}" value="${choice_1_1}" required>
+        ${choice_1_1}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_1}" value="${choice_1_2}" required>
+        ${choice_1_2}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_1}" value="${choice_1_3}" required>
+        ${choice_1_3}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_1}" value="${choice_1_4}" required>
+        ${choice_1_4}
+      </div>
+    </label>
+      </div>
+    </div>
+
+    <div id="p2" height=30px>
+    </div>
+    <div>
+      <p class="title wrapper"> Problem 2</p>
+      <img src="https://cll-tiny-imagenet-10.s3.ap-northeast-1.amazonaws.com/${image_url_2}" height="200px"/>
+      <p>
+        Choose any one <span style="color: red;">"incorrect"</span> label for this image:
+      </p>
+      <div class="selection">
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_2}" value="${choice_2_1}" required>
+        ${choice_2_1}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_2}" value="${choice_2_2}" required>
+        ${choice_2_2}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_2}" value="${choice_2_3}" required>
+        ${choice_2_3}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_2}" value="${choice_2_4}" required>
+        ${choice_2_4}
+      </div>
+    </label>
+      </div>
+    </div>
+
+    <div id="p3" height=30px>
+    </div>
+    <div>
+      <p class="title wrapper"> Problem 3</p>
+      <img src="https://cll-tiny-imagenet-10.s3.ap-northeast-1.amazonaws.com/${image_url_3}" height="200px"/>
+      <p>
+        Choose any one <span style="color: red;">"incorrect"</span> label for this image:
+      </p>
+      <div class="selection">
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_3}" value="${choice_3_1}" required>
+        ${choice_3_1}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_3}" value="${choice_3_2}" required>
+        ${choice_3_2}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_3}" value="${choice_3_3}" required>
+        ${choice_3_3}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_3}" value="${choice_3_4}" required>
+        ${choice_3_4}
+      </div>
+    </label>
+      </div>
+    </div>
+
+    <div id="p4" height=30px>
+    </div>
+    <div>
+      <p class="title wrapper"> Problem 4</p>
+      <img src="https://cll-tiny-imagenet-10.s3.ap-northeast-1.amazonaws.com/${image_url_4}" height="200px"/>
+      <p>
+        Choose any one <span style="color: red;">"incorrect"</span> label for this image:
+      </p>
+      <div class="selection">
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_4}" value="${choice_4_1}" required>
+        ${choice_4_1}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_4}" value="${choice_4_2}" required>
+        ${choice_4_2}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_4}" value="${choice_4_3}" required>
+        ${choice_4_3}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_4}" value="${choice_4_4}" required>
+        ${choice_4_4}
+      </div>
+    </label>
+      </div>
+    </div>
+
+    <div id="p5" height=30px>
+    </div>
+    <div>
+      <p class="title wrapper"> Problem 5</p>
+      <img src="https://cll-tiny-imagenet-10.s3.ap-northeast-1.amazonaws.com/${image_url_5}" height="200px"/>
+      <p>
+        Choose any one <span style="color: red;">"incorrect"</span> label for this image:
+      </p>
+      <div class="selection">
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_5}" value="${choice_5_1}" required>
+        ${choice_5_1}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_5}" value="${choice_5_2}" required>
+        ${choice_5_2}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_5}" value="${choice_5_3}" required>
+        ${choice_5_3}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_5}" value="${choice_5_4}" required>
+        ${choice_5_4}
+      </div>
+    </label>
+      </div>
+    </div>
+
+    <div id="p6" height=30px>
+    </div>
+    <div>
+      <p class="title wrapper"> Problem 6</p>
+      <img src="https://cll-tiny-imagenet-10.s3.ap-northeast-1.amazonaws.com/${image_url_6}" height="200px"/>
+      <p>
+        Choose any one <span style="color: red;">"incorrect"</span> label for this image:
+      </p>
+      <div class="selection">
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_6}" value="${choice_6_1}" required>
+        ${choice_6_1}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_6}" value="${choice_6_2}" required>
+        ${choice_6_2}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_6}" value="${choice_6_3}" required>
+        ${choice_6_3}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_6}" value="${choice_6_4}" required>
+        ${choice_6_4}
+      </div>
+    </label>
+      </div>
+    </div>
+
+    <div id="p7" height=30px>
+    </div>
+    <div>
+      <p class="title wrapper"> Problem 7</p>
+      <img src="https://cll-tiny-imagenet-10.s3.ap-northeast-1.amazonaws.com/${image_url_7}" height="200px"/>
+      <p>
+        Choose any one <span style="color: red;">"incorrect"</span> label for this image:
+      </p>
+      <div class="selection">
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_7}" value="${choice_7_1}" required>
+        ${choice_7_1}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_7}" value="${choice_7_2}" required>
+        ${choice_7_2}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_7}" value="${choice_7_3}" required>
+        ${choice_7_3}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_7}" value="${choice_7_4}" required>
+        ${choice_7_4}
+      </div>
+    </label>
+      </div>
+    </div>
+
+    <div id="p8" height=30px>
+    </div>
+    <div>
+      <p class="title wrapper"> Problem 8</p>
+      <img src="https://cll-tiny-imagenet-10.s3.ap-northeast-1.amazonaws.com/${image_url_8}" height="200px"/>
+      <p>
+        Choose any one <span style="color: red;">"incorrect"</span> label for this image:
+      </p>
+      <div class="selection">
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_8}" value="${choice_8_1}" required>
+        ${choice_8_1}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_8}" value="${choice_8_2}" required>
+        ${choice_8_2}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_8}" value="${choice_8_3}" required>
+        ${choice_8_3}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_8}" value="${choice_8_4}" required>
+        ${choice_8_4}
+      </div>
+    </label>
+      </div>
+    </div>
+
+    <div id="p9" height=30px>
+    </div>
+    <div>
+      <p class="title wrapper"> Problem 9</p>
+      <img src="https://cll-tiny-imagenet-10.s3.ap-northeast-1.amazonaws.com/${image_url_9}" height="200px"/>
+      <p>
+        Choose any one <span style="color: red;">"incorrect"</span> label for this image:
+      </p>
+      <div class="selection">
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_9}" value="${choice_9_1}" required>
+        ${choice_9_1}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_9}" value="${choice_9_2}" required>
+        ${choice_9_2}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_9}" value="${choice_9_3}" required>
+        ${choice_9_3}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_9}" value="${choice_9_4}" required>
+        ${choice_9_4}
+      </div>
+    </label>
+      </div>
+    </div>
+
+    <div id="p10" height=30px>
+    </div>
+    <div>
+      <p class="title wrapper"> Problem 10</p>
+      <img src="https://cll-tiny-imagenet-10.s3.ap-northeast-1.amazonaws.com/${image_url_10}" height="200px"/>
+      <p>
+        Choose any one <span style="color: red;">"incorrect"</span> label for this image:
+      </p>
+      <div class="selection">
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_10}" value="${choice_10_1}" required>
+        ${choice_10_1}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_10}" value="${choice_10_2}" required>
+        ${choice_10_2}
+      </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_10}" value="${choice_10_3}" required>
+        ${choice_10_3}
+	  </div>
+    </label>
+            <label class="choice">
+      <div class="choice_name">
+        <input type="radio" name="${image_url_10}" value="${choice_10_4}" required>
+        ${choice_10_4}
+      </div>
+    </label>
+      </div>
+    </div>
+<div class="column right" style="position:fixed; top:0; right:0; padding-top: 20px;">
+    <div style="padding-left: 5px">
+    Links to all the problems:<br>
+    <a href="#p1">problem 1</a><br>
+    <a href="#p2">problem 2</a><br>
+    <a href="#p3">problem 3</a><br>
+    <a href="#p4">problem 4</a><br>
+    <a href="#p5">problem 5</a><br>
+    <a href="#p6">problem 6</a><br>
+    <a href="#p7">problem 7</a><br>
+    <a href="#p8">problem 8</a><br>
+    <a href="#p9">problem 9</a><br>
+    <a href="#p10">problem 10</a>
+    </div>
+  </div>
+</div>
+
+
+</crowd-form>
