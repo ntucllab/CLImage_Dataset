@@ -228,7 +228,7 @@ Human Intelligence Task (HIT) is the unit of work in Amazon mTurk. We have sever
 
 ### Worker IDs
 
-We have published the list of _worker IDs_ for all contributors who helped label the CLImage_Dataset. To protect their privacy, each original worker ID has been hashed using the **SHA‑1** algorithm. We have also included the annotation durations (_worktimeinseconds_) so that users can see how long each image labeling task took. For more details, please refer to the **worker_ids** folder, which contains the hashed IDs and timing information for each dataset.
+We have published the list of _worker IDs_ for all contributors who helped label the CLImage_Dataset. To safeguard privacy, we have hashed both the original **worker IDs** and **HITIds** using the **SHA‑1** algorithm. We’ve also included the annotation durations (_worktimeinseconds_) so users can see how long each image‑labeling task took. For full details, please refer to the **worker_ids** folder, which contains the hashed identifiers and timing data for each dataset.
 
 ### Reference
 
