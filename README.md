@@ -13,6 +13,11 @@ TL;DR: the download links to CLCIFAR and CLMicroImageNet datasets
 * CLMicroImageNet20 Train: [clmicro_imagenet20_train.pkl](https://drive.google.com/file/d/1Urdxs_QTxbb1gDBpmjP09Q35btckI3_d/view?usp=sharing) (119MB)
 * CLMicroImageNet20 Test: [clmicro_imagenet20_test.pkl](https://drive.google.com/file/d/1EdBCrifSrIIUg1ioPWA-ZLEHO53P4NPl/view?usp=sharing) (11MB)
 
+## Annotation Task Design and Deployment on Amazon MTurk
+To collect human-annotated labels, we used Amazon Mechanical Turk (MTurk) to deploy our annotation task. The layout and interface design for the MTurk task can be found in the file `design-layout-mturk.html`. 
+
+In each task, a single image was presented alongside the question: `Choose any one "incorrect" label for this image`? Annotators were given four example labels to choose from (e.g., `dog, cat, ship, bird`), and were instructed to select the one that does not correctly describe the image.
+
 ## Reproduce Code
 
 The Python version should be 3.8.10 or above.
@@ -25,6 +30,7 @@ bash run.sh
 ## CLCIFAR10
 
 This complementary labeled CIFAR10 dataset contains 3 human-annotated complementary labels for all 50,000 images in the training split of CIFAR10. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
+
 
 For more details, please visit our paper at the link.
 
