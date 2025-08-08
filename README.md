@@ -13,6 +13,26 @@ TL;DR: the download links to CLCIFAR and CLMicroImageNet dataset
 * CLMicroImageNet20 Train: [clmicro_imagenet20_train.pkl](https://drive.google.com/file/d/1Urdxs_QTxbb1gDBpmjP09Q35btckI3_d/view?usp=sharing) (119MB)
 * CLMicroImageNet20 Test: [clmicro_imagenet20_test.pkl](https://drive.google.com/file/d/1EdBCrifSrIIUg1ioPWA-ZLEHO53P4NPl/view?usp=sharing) (11MB)
 
+# Citing
+
+If you find this package useful, please cite both the original works associated with each strategy and the following:
+
+```
+@article{
+wang2025climage,
+title={{CLI}mage: Human-Annotated Datasets for Complementary-Label Learning},
+author={Hsiu-Hsuan Wang and Mai Tan Ha and Nai-Xuan Ye and Wei-I Lin and Hsuan-Tien Lin},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2025},
+url={https://openreview.net/forum?id=FHkWY4aGsN},
+note={}
+}
+```
+## Paper Access
+You can access the paper via the following link:
+* CLImage: Human-Annotated Datasets for Complementary-Label Learning (https://openreview.net/pdf?id=FHkWY4aGsN)
+
 ## Annotation Task Design and Deployment on Amazon MTurk
 To collect human-annotated labels, we used Amazon Mechanical Turk (MTurk) to deploy our annotation task. The layout and interface design for the MTurk task can be found in the file `design-layout-mturk.html`. 
 
