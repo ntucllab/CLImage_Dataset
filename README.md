@@ -3,9 +3,9 @@
 The dataset repo of "CLImage: Human-Annotated Datasets for Complementary-Label Learning"
 
 ## Abstract
-This repo contains four datasets: CLCIFAR10, CLCIFAR20, CLMicroImageNet10, and CLMicroImageNet20 with human annotated complementary labels for complementary label learning tasks.
+This repo contains four datasets: CLCIFAR10, CLCIFAR20, CLMicroImageNet10, and CLMicroImageNet20 with human-annotated complementary labels for complementary label learning tasks.
 
-TL;DR: the download links to CLCIFAR and CLMicroImageNet dataset
+TL;DR: the download links to CLCIFAR and CLMicroImageNet datasets
 * CLCIFAR10: [clcifar10.pkl](https://drive.google.com/file/d/1uNLqmRUkHzZGiSsCtV2-fHoDbtKPnVt2/view?usp=sharing) (148MB)
 * CLCIFAR20: [clcifar20.pkl](https://drive.google.com/file/d/1PhZsyoi1dAHDGlmB4QIJvDHLf_JBsFeP/view?usp=sharing) (151MB)
 * CLMicroImageNet10 Train: [clmicro_imagenet10_train.pkl](https://drive.google.com/file/d/1k02mwMpnBUM9de7TiJLBaCuS8myGuYFx/view?usp=sharing) (55MB)
@@ -40,7 +40,7 @@ In each task, a single image was presented alongside the question: `Choose any o
 
 ## Reproduce Code
 
-The python version should be 3.8.10 or above.
+The Python version should be 3.8.10 or above.
 
 ```bash
 pip3 install -r requirement.txt
@@ -49,9 +49,10 @@ bash run.sh
 
 ## CLCIFAR10
 
-This Complementary labeled CIFAR10 dataset contains 3 human-annotated complementary labels for all 50000 images in the training split of CIFAR10. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
+This complementary labeled CIFAR10 dataset contains 3 human-annotated complementary labels for all 50,000 images in the training split of CIFAR10. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
 
-For more details, please visit our paper at link.
+
+For more details, please visit our paper at the link.
 
 ### Dataset Structure
 
@@ -66,7 +67,7 @@ data = pickle.load(open("clcifar10.pkl", "rb"))
 
 `data` would be a dictionary object with four keys: `names`, `images`, `ord_labels`, `cl_labels`.
 
-* `names`: The list of filenames strings. This filenames are same as the ones in CIFAR10
+* `names`: The list of filenames as strings. These filenames are the same as the ones in CIFAR10
 
 * `images`: A `numpy.ndarray` of size (32, 32, 3) representing the image data with 3 channels, 32*32 resolution.
 
@@ -87,7 +88,7 @@ data = pickle.load(open("clcifar10.pkl", "rb"))
 
 ### HIT Design
 
-Human Intelligence Task (HIT) is the unit of works in Amazon mTurk. We have several designs to make the submission page friendly:
+Human Intelligence Task (HIT) is the unit of work in Amazon mTurk. We have several designs to make the submission page friendly:
 
 * Enlarge the tiny 32\*32 pixels images to 200\*200 pixels for clarity.
 
@@ -95,7 +96,7 @@ Human Intelligence Task (HIT) is the unit of works in Amazon mTurk. We have seve
 
 ## CLCIFAR20
 
-This Complementary labeled CIFAR100 dataset contains 3 human annotated complementary labels for all 50000 images in the training split of CIFAR100. We group 4-6 categories as a superclass according to [[1]](https://arxiv.org/abs/2110.12088) and collect the complementary labels of these 20 superclasses. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
+This complementary labeled CIFAR100 dataset contains 3 human-annotated complementary labels for all 50,000 images in the training split of CIFAR100. We group 4-6 categories as a superclass according to [[1]](https://arxiv.org/abs/2110.12088) and collect the complementary labels of these 20 superclasses. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
 
 ### Dataset Structure
 
@@ -110,7 +111,7 @@ data = pickle.load(open("clcifar20.pkl", "rb"))
 
 `data` would be a dictionary object with four keys: `names`, `images`, `ord_labels`, `cl_labels`.
 
-* `names`: The list of filenames strings. This filenames are same as the ones in CIFAR20
+* `names`: The list of filenames as strings. These filenames arethe  same as the ones in CIFAR20
 
 * `images`: A `numpy.ndarray` of size (32, 32, 3) representing the image data with 3 channels, 32*32 resolution.
 
@@ -141,19 +142,19 @@ data = pickle.load(open("clcifar20.pkl", "rb"))
 
 ### HIT Design
 
-Human Intelligence Task (HIT) is the unit of works in Amazon mTurk. We have several designs to make the submission page friendly:
+Human Intelligence Task (HIT) is the unit of work in Amazon mTurk. We have several designs to make the submission page friendly:
 
-* Hyperlink to all the 10 problems that decrease the scrolling time
-* Example images of the superclasses for better understanding of the categories
+* Hyperlink to all 10 problems that decrease the scrolling time
+* Example images of the superclasses for a better understanding of the categories
 * Enlarge the tiny 32\*32 pixels images to 200\*200 pixels for clarity.
 
 ![](https://i.imgur.com/wg5pV2S.mp4)
 
 ## CLMicroImageNet10
 
-This Complementary labeled MicroImageNet10 dataset contains 3 human annotated complementary labels for all 5000 images in the training split of TinyImageNet200. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
+This complementary labeled MicroImageNet10 dataset contains 3 human-annotated complementary labels for all 5,000 images in the training split of TinyImageNet200. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
 
-For more details, please visit our paper at link.
+For more details, please visit our paper at the link.
 
 ### Dataset Structure
 
@@ -170,7 +171,7 @@ data = pickle.load(open("clmicro_imagenet10_train.pkl", "rb"))
 
 `data` would be a dictionary object with four keys: `names`, `images`, `ord_labels`, `cl_labels`.
 
-* `names`: The list of filenames strings. This filenames are same as the ones in MicroImageNet10
+* `names`: The list of filenames as strings. These filenames are the same as the ones in MicroImageNet10
 
 * `images`: A `numpy.ndarray` of size (32, 32, 3) representing the image data with 3 channels, 64*64 resolution.
 
@@ -191,15 +192,15 @@ data = pickle.load(open("clmicro_imagenet10_train.pkl", "rb"))
 
 ### HIT Design
 
-Human Intelligence Task (HIT) is the unit of works in Amazon mTurk. We have several designs to make the submission page friendly:
+Human Intelligence Task (HIT) is the unit of work in Amazon mTurk. We have several designs to make the submission page friendly:
 
 * Enlarge the tiny 64\*64 pixels images to 200\*200 pixels for clarity.
 
 ## CLMicroImageNet20
 
-This Complementary labeled MicroImageNet20 dataset contains 3 human annotated complementary labels for all 10000 images in the training split of TinyImageNet200. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
+This complementary labeled MicroImageNet20 dataset contains 3 human-annotated complementary labels for all 10,000 images in the training split of TinyImageNet200. The workers are from Amazon Mechanical Turk(https://www.mturk.com). We randomly sampled 4 different labels for 3 different annotators, so each image would have 3 (probably repeated) complementary labels.
 
-For more details, please visit our paper at link.
+For more details, please visit our paper at the link.
 
 ### Dataset Structure
 
@@ -216,7 +217,7 @@ data = pickle.load(open("clmicro_imagenet20_train.pkl", "rb"))
 
 `data` would be a dictionary object with four keys: `names`, `images`, `ord_labels`, `cl_labels`.
 
-* `names`: The list of filenames strings. This filenames are same as the ones in MicroImageNet20
+* `names`: The list of filenames as strings. These filenames are the same as the ones in MicroImageNet20
 
 * `images`: A `numpy.ndarray` of size (32, 32, 3) representing the image data with 3 channels, 64*64 resolution.
 
@@ -247,13 +248,13 @@ data = pickle.load(open("clmicro_imagenet20_train.pkl", "rb"))
 
 ### HIT Design
 
-Human Intelligence Task (HIT) is the unit of works in Amazon mTurk. We have several designs to make the submission page friendly:
+Human Intelligence Task (HIT) is the unit of work in Amazon mTurk. We have several designs to make the submission page friendly:
 
 * Enlarge the tiny 64\*64 pixels images to 200\*200 pixels for clarity.
 
 ### Worker IDs
 
-We are also sharing the list of worker IDs that contributed to labeling our CLImage_Dataset. To protect the privacy of the worker IDs, we hashed the original *worker IDs* using SHA-1 encryption. For further details, please refer to the **worker_ids** folder, which contains the worker IDs for each dataset.
+We have published the list of _worker IDs_ for all contributors who helped label the CLImage_Dataset. To safeguard privacy, we have hashed both the original **worker IDs** and **HITIds** using the **SHA‑1** algorithm. We’ve also included the annotation durations (_worktimeinseconds_) so users can see how long each image‑labeling task took. For full details, please refer to the **worker_ids** folder, which contains the hashed identifiers and timing data for each dataset.
 
 ### Reference
 
